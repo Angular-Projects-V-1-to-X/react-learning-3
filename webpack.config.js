@@ -3,10 +3,13 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: './app.js',
-  output: { path: __dirname, filename: 'bundle.js' },
+  output: {
+    path: __dirname,
+    filename: 'bundle.js'
+  },
 
   watch: true,
-  
+
   module: {
     loaders: [
       {
@@ -18,5 +21,11 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      //compress: { warnings: false}
+      minimize: true
+    })
+  ]
 }
